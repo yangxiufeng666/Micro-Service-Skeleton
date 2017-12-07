@@ -32,3 +32,4 @@ nbdist/
 
 /register/mvnw
 /register/*.cmd
+/register/.mvn
