@@ -22,17 +22,3 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
-/.mvn
-/mvnw
-/*.cmd
-/gateway/mvnw
-/gateway/*.cmd
-/gateway/.mvn
-/register/*.cmd
-
-/register/mvnw
-/register/*.cmd
-/register/.mvn
-/hello-service/.mvn
-/hello-service/*.cmd
-/hello-service/mvnw

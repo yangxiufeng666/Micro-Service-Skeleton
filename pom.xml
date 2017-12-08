@@ -25,6 +25,7 @@
 	<modules>
 		<module>register</module>
 		<module>gateway</module>
+		<module>hello-service</module>
 	</modules>
 
 	<dependencyManagement>

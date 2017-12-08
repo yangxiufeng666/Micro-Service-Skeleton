@@ -1,0 +1,11 @@
+server:
+  port: 9020
+spring:
+  application:
+    name: hello-service
+eureka:
+  instance:
+    hostname: hello-service  #指定该Eureka实例的主机名
+  client:
+    service-url:
+      defaultZone: http://register1:9010/eureka/,http://register2:9011/eureka/
