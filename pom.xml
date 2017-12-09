@@ -26,6 +26,7 @@
 		<module>register</module>
 		<module>gateway</module>
 		<module>hello-service</module>
+		<module>auth-center</module>
 	</modules>
 
 	<dependencyManagement>

@@ -36,3 +36,6 @@ nbdist/
 /hello-service/.mvn
 /hello-service/*.cmd
 /hello-service/mvnw
+/auth-center/.mvn
+/auth-center/mvnw
+/auth-center/*.cmd
