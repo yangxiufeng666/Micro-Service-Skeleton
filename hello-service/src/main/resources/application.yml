@@ -5,7 +5,23 @@ spring:
     name: hello-service
 eureka:
   instance:
-    hostname: hello-service  #指定该Eureka实例的主机名
+    hostname: hello-service #指定该Eureka实例的主机名
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    ###开发环境设置如下可快速移除不可用的服务
+    lease-renewal-interval-in-seconds: 5 #续约更新时间间隔（默认30秒）
+    lease-expiration-duration-in-seconds: 10 #续约到期时间（默认90秒）
   client:
     service-url:
       defaultZone: http://register1:9010/eureka/,http://register2:9011/eureka/
+
+###actuator监控点 start####
+endpoints:
+  health:
+    sensitive: false
+##默认情况下很多端点是不允许访问的，会返回401:Unauthorized
+management:
+  security:
+    enabled: false
+###actuator监控点 end####
+
+
