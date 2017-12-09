@@ -39,3 +39,6 @@ nbdist/
 /auth-center/.mvn
 /auth-center/mvnw
 /auth-center/*.cmd
+/micro-a-service/mvnw
+/micro-a-service/*.cmd
+/micro-a-service/.mvn

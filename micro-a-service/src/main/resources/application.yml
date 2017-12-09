@@ -1,0 +1,12 @@
+server:
+  port: 9021
+spring:
+  application:
+    name: micro-a-service
+
+eureka:
+  instance:
+    hostname: micro-a-service
+  client:
+      service-url:
+        defaultZone: http://register1:9010/eureka/,http://register2:9011/eureka/
