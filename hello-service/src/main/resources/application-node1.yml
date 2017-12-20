@@ -12,7 +12,6 @@ eureka:
   client:
     service-url:
       defaultZone: http://register1:9010/eureka/,http://register2:9011/eureka/
-
 endpoints:
   health:
     sensitive: false

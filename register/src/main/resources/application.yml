@@ -12,14 +12,14 @@ eureka:
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
   server:
-    eviction-interval-timer-in-ms: 5000 ## ÇåÀí¼ä¸ô£¨µ¥Î»ºÁÃë£¬Ä¬ÈÏÊÇ60*1000£©£¬¿ª·¢»·¾³ÉèÖÃÈçÏÂ¿É¿ìËÙÒÆ³ı²»¿ÉÓÃµÄ·şÎñ
-###actuator¼à¿Øµã start####
+    eviction-interval-timer-in-ms: 5000 #### æ¸…ç†é—´éš”ï¼ˆå•ä½æ¯«ç§’ï¼Œé»˜è®¤æ˜¯60*1000ï¼‰ï¼Œå¼€å‘ç¯å¢ƒè®¾ç½®å¦‚ä¸‹å¯å¿«é€Ÿç§»é™¤ä¸å¯ç”¨çš„æœåŠ¡
+###actuatorç›‘æ§ç‚¹ start####
 endpoints:
   health:
     sensitive: false
     enabled: true
-##Ä¬ÈÏÇé¿öÏÂºÜ¶à¶ËµãÊÇ²»ÔÊĞí·ÃÎÊµÄ£¬»á·µ»Ø401:Unauthorized
+##é»˜è®¤æƒ…å†µä¸‹å¾ˆå¤šç«¯ç‚¹æ˜¯ä¸å…è®¸è®¿é—®çš„ï¼Œä¼šè¿”å›401:Unauthorized
 management:
   security:
     enabled: false
-###actuator¼à¿Øµã end####
+###actuatorç›‘æ§ç‚¹ end####
