@@ -3,6 +3,10 @@ server:
 spring:
   application:
     name: micro-a-service
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
 eureka:
   instance:
     prefer-ip-address: true #使用IP注册
@@ -12,3 +16,24 @@ eureka:
   client:
       service-url:
         defaultZone: http://register1:9010/eureka/,http://register2:9011/eureka/
+
+###actuator监控点 start####
+endpoints:
+  health:
+    sensitive: false
+    enabled: true
+##默认情况下很多端点是不允许访问的，会返回401:Unauthorized
+management:
+  security:
+    enabled: false
+###actuator监控点 end####
+
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 3000
+  #同一实例最大重试次数，不包括首次调用
+  maxAutoRetries: 1
+  # 重试其他实例的最大重试次数，不包括首次所选的server
+  MaxAutoRetriesNextServer: 2
+  # 是否所有操作都进行重试
+  OkToRetryOnAllOperations: true

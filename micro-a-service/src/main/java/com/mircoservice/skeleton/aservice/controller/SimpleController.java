@@ -1,5 +1,7 @@
 package com.mircoservice.skeleton.aservice.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,8 +18,15 @@ public class SimpleController {
     RestTemplate restTemplate;
 
     @RequestMapping(value = "getWord")
+    @HystrixCommand(fallbackMethod = "helloFallback",commandKey = "getWord",groupKey = "SimpleController",threadPoolKey = "SimplePool")
+    @CacheResult(cacheKeyMethod = "getKey")
     public String getWord(){
         return restTemplate.getForEntity("http://hello-service/hello",String.class).getBody();
     }
-
+    private String helloFallback(){
+        return "error";
+    }
+    private String getKey(){
+        return "word";
+    }
 }

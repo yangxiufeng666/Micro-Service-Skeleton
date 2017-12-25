@@ -28,6 +28,7 @@
 		<module>hello-service</module>
 		<module>micro-a-service</module>
 		<module>auth-center</module>
+		<module>resource</module>
 	</modules>
 	<dependencies>
 		<dependency>
