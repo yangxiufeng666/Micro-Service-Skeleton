@@ -42,3 +42,12 @@ nbdist/
 /micro-a-service/mvnw
 /micro-a-service/*.cmd
 /micro-a-service/.mvn
+/upload-service/mvnw
+/upload-service/*.cmd
+/upload-service/.mvn
+/monitor/.mvn
+/monitor/mvnw
+/monitor/mvnw.cmd
+/resource/mvnw
+/resource/mvnw.cmd
+/resource/.mvn

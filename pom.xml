@@ -29,6 +29,8 @@
 		<module>micro-a-service</module>
 		<module>auth-center</module>
 		<module>resource</module>
+		<module>upload-service</module>
+		<module>monitor</module>
 	</modules>
 	<dependencies>
 		<dependency>
