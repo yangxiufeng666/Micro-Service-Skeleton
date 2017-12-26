@@ -3,6 +3,8 @@ server:
 spring:
   application:
     name: hello-service
+  zipkin:
+      base-url: http://10.10.8.2:9050
 eureka:
   instance:
     prefer-ip-address: true

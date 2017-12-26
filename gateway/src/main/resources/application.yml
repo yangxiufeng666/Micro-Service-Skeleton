@@ -1,6 +1,8 @@
 spring:
   application:
     name: Gateway
+  zipkin:
+    base-url: http://10.10.8.2:9050
 server:
   port: 9030
 eureka:
@@ -22,3 +24,5 @@ management:
   security:
     enabled: false
 ###actuator监控点 end####
+
+##ZipKin

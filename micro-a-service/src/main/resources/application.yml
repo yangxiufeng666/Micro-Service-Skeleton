@@ -3,6 +3,8 @@ server:
 spring:
   application:
     name: micro-a-service
+  zipkin:
+      base-url: http://10.10.8.2:9050
   cloud:
     loadbalancer:
       retry:
