@@ -1,6 +1,8 @@
 spring:
   application:
     name: auth2.0-center
+  zipkin:
+      base-url: http://10.10.8.2:9050
   jpa:
     show-sql: true
   datasource:
@@ -11,3 +13,23 @@ spring:
       driver-class-name: com.mysql.jdbc.Driver
 server:
   port: 9060
+
+eureka:
+  instance:
+    prefer-ip-address: true #使用IP注册
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    lease-renewal-interval-in-seconds: 5 ##为了能够快速删除
+    lease-expiration-duration-in-seconds: 10 ##为了能够快速删除
+  client:
+      service-url:
+        defaultZone: http://register1:9010/eureka/,http://register2:9011/eureka/
+###actuator监控点 start####
+endpoints:
+  health:
+    sensitive: false
+    enabled: true
+##默认情况下很多端点是不允许访问的，会返回401:Unauthorized
+management:
+  security:
+    enabled: false
+###actuator监控点 end####
