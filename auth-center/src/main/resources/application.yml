@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: auth2.0-center
+  jpa:
+    show-sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/zuul-auth?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+server:
+  port: 9060
