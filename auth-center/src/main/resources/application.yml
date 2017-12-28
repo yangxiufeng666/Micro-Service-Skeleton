@@ -1,3 +1,5 @@
+server:
+  port: 9060
 spring:
   application:
     name: auth2.0-center
@@ -11,9 +13,10 @@ spring:
     password: 123456
     druid:
       driver-class-name: com.mysql.jdbc.Driver
-server:
-  port: 9060
-
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
 eureka:
   instance:
     prefer-ip-address: true #Ê¹ÓÃIP×¢²á
@@ -33,3 +36,7 @@ management:
   security:
     enabled: false
 ###actuator¼à¿Øµã end####
+security:
+  oauth2:
+    resource:
+      filter-order: 3
