@@ -1,7 +1,7 @@
 package com.microservice.skeleton.auth.service.impl;
 
 import com.microservice.skeleton.auth.entity.RcUserEntity;
-import com.microservice.skeleton.auth.respository.UserRepository;
+import com.microservice.skeleton.auth.repository.UserRepository;
 import com.microservice.skeleton.auth.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

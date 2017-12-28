@@ -1,4 +1,4 @@
-package com.microservice.skeleton.auth.respository;
+package com.microservice.skeleton.auth.repository;
 
 import com.microservice.skeleton.auth.entity.RcUserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
