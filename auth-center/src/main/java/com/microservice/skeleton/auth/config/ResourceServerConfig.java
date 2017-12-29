@@ -12,8 +12,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
  * Time:10:46
  * ProjectName:Mirco-Service-Skeleton
  */
-//@Configuration
-//@EnableResourceServer
+@Configuration
+@EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
     @Override
     public void configure(HttpSecurity http) throws Exception {

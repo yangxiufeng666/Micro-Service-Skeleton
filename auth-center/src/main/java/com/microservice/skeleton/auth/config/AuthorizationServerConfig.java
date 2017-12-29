@@ -4,6 +4,7 @@ import com.microservice.skeleton.auth.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -13,7 +14,6 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
-import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 
 import javax.sql.DataSource;
@@ -54,13 +54,22 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         endpoints.tokenStore(jdbcTokenStore())
                 .userDetailsService(userDetailsService)
                 .authenticationManager(authenticationManager);
+        endpoints.tokenServices(defaultTokenServices());
+    }
+
+    /**
+     * <p>注意，自定义TokenServices的时候，需要设置@Primary，否则报错，</p>
+     * @return
+     */
+    @Primary
+    @Bean
+    public DefaultTokenServices defaultTokenServices(){
         DefaultTokenServices tokenServices = new DefaultTokenServices();
-        tokenServices.setTokenStore(endpoints.getTokenStore());
+        tokenServices.setTokenStore(jdbcTokenStore());
         tokenServices.setSupportRefreshToken(true);
-        tokenServices.setClientDetailsService(endpoints.getClientDetailsService());
-        tokenServices.setTokenEnhancer(endpoints.getTokenEnhancer());
+        tokenServices.setClientDetailsService(clientDetails());
 //        tokenServices.setAccessTokenValiditySeconds( (int) TimeUnit.DAYS.toSeconds(30)); // token有效期自定义设置，默认12小时
-        endpoints.tokenServices(tokenServices);
+        return tokenServices;
     }
 
     @Override
