@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -15,9 +16,9 @@ import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 import javax.sql.DataSource;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Mr.Yangxiufeng on 2017/12/28.
@@ -36,10 +37,19 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
+    @Autowired
+    private RedisConnectionFactory redisConnectionFactory;
+
     @Bean
-    public JdbcTokenStore jdbcTokenStore(){
-        return new JdbcTokenStore(dataSource);
+    RedisTokenStore redisTokenStore(){
+        return new RedisTokenStore(redisConnectionFactory);
     }
+
+    //token存储数据库
+//    @Bean
+//    public JdbcTokenStore jdbcTokenStore(){
+//        return new JdbcTokenStore(dataSource);
+//    }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -51,7 +61,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     }
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.tokenStore(jdbcTokenStore())
+        endpoints.tokenStore(redisTokenStore())
                 .userDetailsService(userDetailsService)
                 .authenticationManager(authenticationManager);
         endpoints.tokenServices(defaultTokenServices());
@@ -65,10 +75,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Bean
     public DefaultTokenServices defaultTokenServices(){
         DefaultTokenServices tokenServices = new DefaultTokenServices();
-        tokenServices.setTokenStore(jdbcTokenStore());
+        tokenServices.setTokenStore(redisTokenStore());
         tokenServices.setSupportRefreshToken(true);
         tokenServices.setClientDetailsService(clientDetails());
-//        tokenServices.setAccessTokenValiditySeconds( (int) TimeUnit.DAYS.toSeconds(30)); // token有效期自定义设置，默认12小时
+        tokenServices.setAccessTokenValiditySeconds(60); // token有效期自定义设置，默认12小时
+        tokenServices.setRefreshTokenValiditySeconds(60 * 60 * 24 * 30);//默认30天，这里修改
         return tokenServices;
     }
 
