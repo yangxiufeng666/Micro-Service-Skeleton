@@ -25,12 +25,15 @@ management:
     enabled: false
 ###actuator监控点 end####
 
-###如下配置参考##
+###如下Oauth2.0配置参考##
 ###https://stackoverflow.com/questions/30327269/spring-oauth-authorization-server-behind-spring-cloud-zuul-proxy##
 ###https://github.com/spring-guides/tut-spring-security-and-angular-js/blob/master/oauth2-vanilla/README.adoc##
 ###http://wiselyman.iteye.com/blog/2379419##
 #######
 zuul:
+  host:
+    connect-timeout-millis: 10000
+    socket-timeout-millis: 60000
   routes:
     uaa:
       path: /uaa/**
@@ -48,3 +51,21 @@ security:
       user-info-uri:  http://10.10.8.2:9030/uaa/user
       prefer-token-info: false
 ##############end#####################
+####超时配置####
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+  MaxAutoRetries: 1
+  MaxAutoRetriesNextServer: 2
+  eureka:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 600000
+###超时配置###
