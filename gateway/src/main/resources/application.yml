@@ -25,4 +25,26 @@ management:
     enabled: false
 ###actuator监控点 end####
 
-##ZipKin
+###如下配置参考##
+###https://stackoverflow.com/questions/30327269/spring-oauth-authorization-server-behind-spring-cloud-zuul-proxy##
+###https://github.com/spring-guides/tut-spring-security-and-angular-js/blob/master/oauth2-vanilla/README.adoc##
+###http://wiselyman.iteye.com/blog/2379419##
+#######
+zuul:
+  routes:
+    uaa:
+      path: /uaa/**
+      strip-prefix: true
+      sensitiveHeaders:
+      serviceId: auth2.0-center
+security:
+  basic:
+    enabled: false
+  oauth2:
+    client:
+      access-token-uri: http://10.10.8.2:9030/uaa/oauth/token ##网关的地址
+      user-authorization-uri: http://10.10.8.2:9030/uaa/oauth/token
+    resource:
+      user-info-uri:  http://10.10.8.2:9030/uaa/user
+      prefer-token-info: false
+##############end#####################
