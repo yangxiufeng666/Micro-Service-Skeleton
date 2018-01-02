@@ -1,4 +1,4 @@
-package com.microservice.skeleton.hello;
+package com.microservice.skeleton.order;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

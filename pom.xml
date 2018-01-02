@@ -26,8 +26,8 @@
 	<modules>
 		<module>register</module>
 		<module>gateway</module>
-		<module>hello-service</module>
-		<module>micro-a-service</module>
+		<module>user-service</module>
+		<module>order-service</module>
 		<module>auth-center</module>
 		<module>resource</module>
 		<module>upload-service</module>

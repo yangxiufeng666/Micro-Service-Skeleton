@@ -1,4 +1,4 @@
-package com.microservice.skeleton.hello.controller;
+package com.microservice.skeleton.order.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

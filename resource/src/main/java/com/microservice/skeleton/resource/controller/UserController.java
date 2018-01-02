@@ -13,7 +13,7 @@ public class UserController {
 
     @GetMapping(value = "getUser")
     public String getUser(){
-        return "hello";
+        return "order";
     }
 
 }
