@@ -25,7 +25,7 @@ public class OrderController {
     public String index(){
         ServiceInstance instance = client.getLocalServiceInstance();
         LOGGER.info("here....................");
-        return "Hello World : "+ instance.getServiceId();
+        return "Hello World : "+ instance.getServiceId()+",port:" + instance.getPort();
     }
 
 }
