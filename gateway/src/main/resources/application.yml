@@ -9,8 +9,6 @@ eureka:
   instance:
     prefer-ip-address: true #使用IP注册
     instance-id: ${spring.cloud.client.ipAddress}:${server.port}
-    lease-renewal-interval-in-seconds: 5 ##为了能够快速删除
-    lease-expiration-duration-in-seconds: 10 ##为了能够快速删除
   client:
       service-url:
         defaultZone: http://register1:9010/eureka/,http://register2:9011/eureka/

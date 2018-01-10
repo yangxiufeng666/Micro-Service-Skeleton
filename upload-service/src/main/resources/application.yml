@@ -9,21 +9,19 @@ server:
   port: 9040
 eureka:
   instance:
-    prefer-ip-address: true #Ê¹ÓÃIP×¢²á
+    prefer-ip-address: true #Ê¹ï¿½ï¿½IP×¢ï¿½ï¿½
     instance-id: ${spring.cloud.client.ipAddress}:${server.port}
-    lease-renewal-interval-in-seconds: 5 ##ÎªÁËÄÜ¹»¿ìËÙÉ¾³ı
-    lease-expiration-duration-in-seconds: 10 ##ÎªÁËÄÜ¹»¿ìËÙÉ¾³ı
   client:
       service-url:
         defaultZone: http://register1:9010/eureka/,http://register2:9011/eureka/
 
-###actuator¼à¿Øµã start####
+###actuatorï¿½ï¿½Øµï¿½ start####
 endpoints:
   health:
     sensitive: false
     enabled: true
-##Ä¬ÈÏÇé¿öÏÂºÜ¶à¶ËµãÊÇ²»ÔÊĞí·ÃÎÊµÄ£¬»á·µ»Ø401:Unauthorized
+##Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÂºÜ¶ï¿½Ëµï¿½ï¿½Ç²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÊµÄ£ï¿½ï¿½á·µï¿½ï¿½401:Unauthorized
 management:
   security:
     enabled: false
-###actuator¼à¿Øµã end####
+###actuatorï¿½ï¿½Øµï¿½ end####

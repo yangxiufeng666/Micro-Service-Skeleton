@@ -7,10 +7,8 @@ spring:
       base-url: http://10.10.8.2:9050
 eureka:
   instance:
-    prefer-ip-address: true #ʹ��IPע��
+    prefer-ip-address: true #
     instance-id: ${spring.cloud.client.ipAddress}:${server.port}
-    lease-renewal-interval-in-seconds: 5 ##Ϊ���ܹ�����ɾ��
-    lease-expiration-duration-in-seconds: 10 ##Ϊ���ܹ�����ɾ��
   client:
       service-url:
         defaultZone: http://register1:9010/eureka/,http://register2:9011/eureka/

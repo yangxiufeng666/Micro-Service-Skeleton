@@ -11,8 +11,8 @@ eureka:
     fetch-registry: false
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-  server:
-    eviction-interval-timer-in-ms: 5000 #### 清理间隔（单位毫秒，默认是60*1000），开发环境设置如下可快速移除不可用的服务
+#  server:
+#    eviction-interval-timer-in-ms: 5000 #### 清理间隔（单位毫秒，默认是60*1000），开发环境设置如下可快速移除不可用的服务
 ###actuator监控点 start####
 endpoints:
   health:
@@ -23,3 +23,9 @@ management:
   security:
     enabled: false
 ###actuator监控点 end####
+logging:
+  config: classpath:logback.xml
+  level:
+    org:
+      springframework:
+        web: info
