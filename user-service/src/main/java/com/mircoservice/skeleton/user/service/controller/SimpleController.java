@@ -19,9 +19,9 @@ public class SimpleController {
 
     @RequestMapping(value = "getWord")
     @HystrixCommand(fallbackMethod = "helloFallback",commandKey = "getWord",groupKey = "SimpleController",threadPoolKey = "SimplePool")
-    @CacheResult(cacheKeyMethod = "getKey")
+//    @CacheResult(cacheKeyMethod = "getKey")
     public String getWord(){
-        return restTemplate.getForEntity("http://order-service/order",String.class).getBody();
+        return restTemplate.getForEntity("http://order-service/hello",String.class).getBody();
     }
     private String helloFallback(){
         return "error";
