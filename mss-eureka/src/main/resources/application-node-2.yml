@@ -1,0 +1,14 @@
+server:
+  port: 9011
+spring:
+  application:
+    name: mss-eureka
+eureka:
+  instance:
+    hostname: mss-eureka2
+  client:
+    ##这里要覆盖application的设置，不然会读取application文件导致unavailable-replicas
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://mss-eureka1:9010/eureka/

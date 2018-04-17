@@ -1,0 +1,24 @@
+server:
+  port: 9050
+spring:
+  application:
+    name: micro-service-monitor
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+  client:
+      service-url:
+        defaultZone: http://mss-eureka1:9010/eureka/,http://mss-eureka2:9011/eureka/
+endpoints:
+  health:
+    sensitive: false
+    enabled: true
+management:
+  security:
+    enabled: false
+turbine:
+  app-config-list: micro-a-service
+  cluster-name-expression: "'default'"

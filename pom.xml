@@ -24,14 +24,11 @@
 		<version>1.5.9.RELEASE</version>
 	</parent>
 	<modules>
-		<module>register</module>
-		<module>gateway</module>
-		<module>user-service</module>
-		<module>order-service</module>
-		<module>auth-center</module>
-		<module>resource</module>
-		<module>upload-service</module>
-		<module>monitor</module>
+		<module>mss-eureka</module>
+		<module>mss-oauth</module>
+		<module>mss-gateway</module>
+		<module>mss-monitor</module>
+		<module>mss-resource</module>
 	</modules>
 	<dependencies>
 		<dependency>

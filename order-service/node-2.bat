@@ -1,1 +1,0 @@
-java -jar .\target\Micro-Service-Skeleton-Order-Service-0.0.1-SNAPSHOT.jar --spring.profiles.active=node2
