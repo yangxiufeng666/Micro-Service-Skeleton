@@ -47,7 +47,8 @@ security:
     enabled: false
   oauth2:
     client:
-      access-token-uri: http://localhost:9030/uaa/oauth/token ##网关的地址
+      ##网关的地址
+      access-token-uri: http://localhost:9030/uaa/oauth/token
       user-authorization-uri: http://localhost:9030/uaa/oauth/authorize
     resource:
       user-info-uri:  http://localhost:9030/uaa/user
