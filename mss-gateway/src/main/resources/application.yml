@@ -17,14 +17,14 @@ eureka:
       service-url:
         defaultZone: http://mss-eureka1:9010/eureka/,http://mss-eureka2:9011/eureka/
 ###actuator监控点 start####
-endpoints:
-  health:
-    sensitive: false
-    enabled: true
+#endpoints:
+#  health:
+#    sensitive: false
+#    enabled: true
 ##默认情况下很多端点是不允许访问的，会返回401:Unauthorized
-management:
-  security:
-    enabled: false
+#management:
+#  security:
+#    enabled: false
 ###actuator监控点 end####
 
 ###如下Oauth2.0配置参考##
@@ -42,17 +42,23 @@ zuul:
       strip-prefix: true
       sensitiveHeaders:
       serviceId: auth2.0-center
-security:
-  basic:
-    enabled: false
-  oauth2:
-    client:
-      ##网关的地址
-      access-token-uri: http://localhost:9030/uaa/oauth/token
-      user-authorization-uri: http://localhost:9030/uaa/oauth/authorize
-    resource:
-      user-info-uri:  http://localhost:9030/uaa/user
-      prefer-token-info: false
+#security:
+#  basic:
+#    enabled: false
+#  oauth2:
+#    client:
+#      ##网关的地址
+#      access-token-uri: http://localhost:9030/uaa/oauth/token
+#      user-authorization-uri: http://localhost:9030/uaa/oauth/authorize
+#    resource:
+#      user-info-uri:  http://localhost:9060/user
+#      prefer-token-info: false
+#security:
+#  oauth2:
+#    resource:
+#      id: resource
+#      user-info-uri: http://localhost:9060/user
+#      prefer-token-info: false
 ##############end#####################
 ####超时配置####
 ribbon:

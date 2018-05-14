@@ -1,0 +1,31 @@
+server:
+  port: 9023
+spring:
+  application:
+    name: resource
+  zipkin:
+      base-url: http://localhost:9050
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    ##续约更新时间间隔设置5秒，m默认30s
+    lease-renewal-interval-in-seconds: 5
+    ##续约到期时间10秒，默认是90秒
+    lease-expiration-duration-in-seconds: 10
+  client:
+      service-url:
+        defaultZone: http://mss-eureka1:9010/eureka/,http://mss-eureka2:9011/eureka/
+endpoints:
+  health:
+    sensitive: false
+    enabled: true
+management:
+  security:
+    enabled: false
+security:
+  oauth2:
+    resource:
+      id: resource
+      user-info-uri: http://localhost:9030/uaa/user
+      prefer-token-info: false
