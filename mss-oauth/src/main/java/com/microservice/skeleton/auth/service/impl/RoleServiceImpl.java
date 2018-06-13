@@ -1,24 +1,26 @@
 package com.microservice.skeleton.auth.service.impl;
 
-import com.microservice.skeleton.auth.entity.RcRoleEntity;
-import com.microservice.skeleton.auth.repository.RoleRepository;
 import com.microservice.skeleton.auth.service.RoleService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.microservice.skeleton.common.vo.Result;
+import com.microservice.skeleton.common.vo.RoleVo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
- * Created by Mr.Yangxiufeng on 2017/12/29.
- * Time:12:31
- * ProjectName:Mirco-Service-Skeleton
+ * Created with IntelliJ IDEA.
+ * Description:
+ * User: Mr.Yangxiufeng
+ * Date: 2018-06-13
+ * Time: 11:06
  */
 @Service
+@Slf4j
 public class RoleServiceImpl implements RoleService {
-    @Autowired
-    private RoleRepository roleRepository;
     @Override
-    public List<RcRoleEntity> getRoleValuesByUserId(Integer userId) {
-        return roleRepository.getRoleValuesByUserId(userId);
+    public Result<List<RoleVo>> getRoleByUserId(Integer userId) {
+        log.info("调用{}失败","getRoleByUserId");
+        return Result.failure(100,"调用getRoleByUserId失败");
     }
 }

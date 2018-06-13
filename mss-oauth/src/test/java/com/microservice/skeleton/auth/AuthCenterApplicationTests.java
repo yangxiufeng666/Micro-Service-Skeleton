@@ -1,6 +1,5 @@
 package com.microservice.skeleton.auth;
 
-import com.microservice.skeleton.auth.entity.RcUserEntity;
 import com.microservice.skeleton.auth.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,8 +14,6 @@ public class AuthCenterApplicationTests {
 	UserService userService;
 	@Test
 	public void contextLoads() {
-		RcUserEntity user = userService.findByUsername("test1");
-		System.out.println(user);
 	}
 
 }

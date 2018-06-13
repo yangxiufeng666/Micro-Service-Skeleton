@@ -1,0 +1,25 @@
+server:
+  port: 9021
+spring:
+  application:
+    name: mss-upms
+  datasource:
+      url: jdbc:mysql://localhost:3306/zuul-auth?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: 123456
+      druid:
+        driver-class-name: com.mysql.jdbc.Driver
+mapper:
+  mappers:
+     com.microservice.skeleton.upms.mapper
+eureka:
+  instance:
+    prefer-ip-address: true #使用IP注册
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    ##续约更新时间间隔设置5秒，m默认30s
+    lease-renewal-interval-in-seconds: 5
+    ##续约到期时间10秒，默认是90秒
+    lease-expiration-duration-in-seconds: 10
+  client:
+      service-url:
+        defaultZone: http://mss-eureka1:9010/eureka/,http://mss-eureka2:9011/eureka/

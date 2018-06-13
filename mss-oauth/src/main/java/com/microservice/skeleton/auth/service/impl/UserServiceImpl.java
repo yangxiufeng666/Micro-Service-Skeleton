@@ -1,23 +1,24 @@
 package com.microservice.skeleton.auth.service.impl;
 
-import com.microservice.skeleton.auth.entity.RcUserEntity;
-import com.microservice.skeleton.auth.repository.UserRepository;
 import com.microservice.skeleton.auth.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.microservice.skeleton.common.vo.Result;
+import com.microservice.skeleton.common.vo.UserVo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by Mr.Yangxiufeng on 2017/12/27.
- * Time:15:13
- * ProjectName:Mirco-Service-Skeleton
+ * Created with IntelliJ IDEA.
+ * Description:
+ * User: Mr.Yangxiufeng
+ * Date: 2018-06-13
+ * Time: 10:56
  */
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
-    @Autowired
-    private UserRepository userRepository;
-
     @Override
-    public RcUserEntity findByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public Result<UserVo> findByUsername(String username) {
+        log.info("调用{}失败","findByUsername");
+        return Result.failure(100,"调用findByUsername接口失败");
     }
 }

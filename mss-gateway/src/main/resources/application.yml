@@ -42,21 +42,25 @@ zuul:
       strip-prefix: true
       sensitiveHeaders:
       serviceId: auth2.0-center
-#security:
-#  basic:
-#    enabled: false
-#  oauth2:
+security:
+  basic:
+    enabled: false
+  oauth2:
+#    sso:
+#      loginPath: /login
 #    client:
 #      ##网关的地址
 #      access-token-uri: http://localhost:9030/uaa/oauth/token
 #      user-authorization-uri: http://localhost:9030/uaa/oauth/authorize
-#    resource:
-#      user-info-uri:  http://localhost:9060/user
-#      prefer-token-info: false
+#      client-id: webApp
+#      client-secret: webApp
+    resource:
+      user-info-uri:  http://localhost:9060/user
+      prefer-token-info: false
 #security:
 #  oauth2:
 #    resource:
-#      id: resource
+#      id: gateway
 #      user-info-uri: http://localhost:9060/user
 #      prefer-token-info: false
 ##############end#####################

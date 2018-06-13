@@ -1,11 +1,13 @@
 package com.microservice.skeleton.auth.service.impl;
-
-import com.microservice.skeleton.auth.entity.RcMenuEntity;
-import com.microservice.skeleton.auth.entity.RcRoleEntity;
-import com.microservice.skeleton.auth.entity.RcUserEntity;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microservice.skeleton.auth.service.PermissionService;
 import com.microservice.skeleton.auth.service.RoleService;
 import com.microservice.skeleton.auth.service.UserService;
+import com.microservice.skeleton.common.vo.MenuVo;
+import com.microservice.skeleton.common.vo.Result;
+import com.microservice.skeleton.common.vo.RoleVo;
+import com.microservice.skeleton.common.vo.UserVo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,7 +17,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -34,10 +35,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private PermissionService permissionService;
 
+    private ObjectMapper objectMapper = new ObjectMapper();
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        RcUserEntity userEntity = userService.findByUsername(username);
-        if (userEntity == null) {
+        Result<UserVo> userResult = userService.findByUsername(username);
+        if (userResult.getCode() == 100) {
             throw new UsernameNotFoundException("用户:" + username + ",不存在!");
         }
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
@@ -45,20 +48,28 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         boolean accountNonExpired = true; // 过期性 :true:没过期 false:过期
         boolean credentialsNonExpired = true; // 有效性 :true:凭证有效 false:凭证无效
         boolean accountNonLocked = true; // 锁定性 :true:未锁定 false:已锁定
-        List<RcRoleEntity> roleValues = roleService.getRoleValuesByUserId(userEntity.getId());
-        for (RcRoleEntity role:roleValues){
-            //角色必须是ROLE_开头，可以在数据库中设置
-            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ROLE_"+role.getValue());
-            grantedAuthorities.add(grantedAuthority);
-            //获取权限
-            List<RcMenuEntity> permissionList = permissionService.getPermissionsByRoleId(role.getId());
-            for (RcMenuEntity menu:permissionList
-                 ) {
-                GrantedAuthority authority = new SimpleGrantedAuthority(menu.getCode());
-                grantedAuthorities.add(authority);
+        UserVo userVo = new UserVo();
+        BeanUtils.copyProperties(userResult.getData(),userVo);
+        Result<List<RoleVo>> roleResult = roleService.getRoleByUserId(userVo.getId());
+        if (roleResult.getCode() != 100){
+            List<RoleVo> roleVoList = roleResult.getData();
+            for (RoleVo role:roleVoList){
+                //角色必须是ROLE_开头，可以在数据库中设置
+                GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ROLE_"+role.getValue());
+                grantedAuthorities.add(grantedAuthority);
+                //获取权限
+                Result<List<MenuVo>> perResult  = permissionService.getRolePermission(role.getId());
+                if (perResult.getCode() != 100){
+                    List<MenuVo> permissionList = perResult.getData();
+                    for (MenuVo menu:permissionList
+                            ) {
+                        GrantedAuthority authority = new SimpleGrantedAuthority(menu.getCode());
+                        grantedAuthorities.add(authority);
+                    }
+                }
             }
         }
-        User user = new User(userEntity.getUsername(), userEntity.getPassword(),
+        User user = new User(userVo.getUsername(), userVo.getPassword(),
                 enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, grantedAuthorities);
         return user;
     }
