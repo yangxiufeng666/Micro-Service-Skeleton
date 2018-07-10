@@ -15,7 +15,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<spring-cloud.version>Edgware.RELEASE</spring-cloud.version>
+		<spring-cloud.version>Edgware.SR3</spring-cloud.version>
 		<druid-starter.version>1.1.6</druid-starter.version>
 		<swagger2.version>2.8.0</swagger2.version>
 		<lombok.version>1.16.20</lombok.version>
@@ -25,7 +25,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.12.RELEASE</version>
+		<version>1.5.13.RELEASE</version>
 	</parent>
 	<modules>
 		<module>mss-common</module>
