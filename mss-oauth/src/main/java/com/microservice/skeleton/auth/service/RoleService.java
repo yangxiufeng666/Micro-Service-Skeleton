@@ -3,7 +3,7 @@ package com.microservice.skeleton.auth.service;
 import com.microservice.skeleton.auth.service.impl.RoleServiceImpl;
 import com.microservice.skeleton.common.vo.Result;
 import com.microservice.skeleton.common.vo.RoleVo;
-import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 

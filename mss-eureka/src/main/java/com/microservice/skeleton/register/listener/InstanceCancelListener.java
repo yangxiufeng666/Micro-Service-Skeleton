@@ -1,10 +1,10 @@
 package com.microservice.skeleton.register.listener;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.netflix.eureka.server.event.EurekaInstanceCanceledEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.lang.NonNull;
 
 /**
  * Created by Mr.Yangxiufeng on 2017/12/9.
@@ -12,10 +12,10 @@ import org.springframework.context.annotation.Configuration;
  * ProjectName:Mirco-Service-Skeleton
  */
 @Configuration
+@Slf4j
 public class InstanceCancelListener implements ApplicationListener<EurekaInstanceCanceledEvent> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(InstanceCancelListener.class);
     @Override
-    public void onApplicationEvent(EurekaInstanceCanceledEvent event) {
-        LOGGER.info("服务:{}挂了",event.getAppName());
+    public void onApplicationEvent(@NonNull EurekaInstanceCanceledEvent event) {
+        log.info("服务:{}挂了",event.getAppName());
     }
 }

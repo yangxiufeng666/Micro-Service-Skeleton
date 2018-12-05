@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableZuulProxy
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class GatewayApplication {
 
 	public static void main(String[] args) {

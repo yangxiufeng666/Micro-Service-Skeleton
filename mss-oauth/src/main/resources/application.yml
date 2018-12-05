@@ -3,9 +3,7 @@ server:
 
 spring:
   application:
-    name: auth2.0-center
-  zipkin:
-      base-url: http://localhost:9050
+    name: authCenter
   jpa:
     show-sql: true
   datasource:
@@ -20,26 +18,15 @@ spring:
     password: 123456
 eureka:
   instance:
-    prefer-ip-address: true #ʹ��IPע��
-    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
     ##续约更新时间间隔设置5秒，m默认30s
     lease-renewal-interval-in-seconds: 5
     ##续约到期时间10秒，默认是90秒
     lease-expiration-duration-in-seconds: 10
   client:
       service-url:
-        defaultZone: http://mss-eureka1:9010/eureka/,http://mss-eureka2:9011/eureka/
-endpoints:
-  health:
-    sensitive: false
-    enabled: true
-management:
-  security:
-    enabled: false
-security:
-  oauth2:
-    resource:
-      filter-order: 3
+        defaultZone: http://mss-eureka1:9010/eureka/
 logging:
   config: classpath:logback.xml
   level:

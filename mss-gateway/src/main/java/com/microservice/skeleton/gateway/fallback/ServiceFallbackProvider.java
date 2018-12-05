@@ -22,7 +22,7 @@ import java.io.InputStream;
 @Component
 public class ServiceFallbackProvider implements FallbackProvider {
     @Override
-    public ClientHttpResponse fallbackResponse(Throwable cause) {
+    public ClientHttpResponse fallbackResponse(String route, Throwable cause) {
         cause.printStackTrace();
         return new ClientHttpResponse() {
             @Override
@@ -65,14 +65,10 @@ public class ServiceFallbackProvider implements FallbackProvider {
         };
     }
 
+
     @Override
     public String getRoute() {
         //表明是为哪个微服务提供回退，"*"全部
         return "*";
-    }
-
-    @Override
-    public ClientHttpResponse fallbackResponse() {
-        return null;
     }
 }
