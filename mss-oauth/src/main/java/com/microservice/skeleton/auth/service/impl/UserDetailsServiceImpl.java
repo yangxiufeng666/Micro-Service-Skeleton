@@ -3,6 +3,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microservice.skeleton.auth.service.PermissionService;
 import com.microservice.skeleton.auth.service.RoleService;
 import com.microservice.skeleton.auth.service.UserService;
+import com.microservice.skeleton.common.util.StatusCode;
 import com.microservice.skeleton.common.vo.MenuVo;
 import com.microservice.skeleton.common.vo.Result;
 import com.microservice.skeleton.common.vo.RoleVo;
@@ -40,7 +41,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Result<UserVo> userResult = userService.findByUsername(username);
-        if (userResult.getCode() == 100) {
+        if (userResult.getCode() != StatusCode.SUCCESS_CODE) {
             throw new UsernameNotFoundException("用户:" + username + ",不存在!");
         }
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
@@ -51,7 +52,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         UserVo userVo = new UserVo();
         BeanUtils.copyProperties(userResult.getData(),userVo);
         Result<List<RoleVo>> roleResult = roleService.getRoleByUserId(userVo.getId());
-        if (roleResult.getCode() != 100){
+        if (roleResult.getCode() != StatusCode.SUCCESS_CODE){
             List<RoleVo> roleVoList = roleResult.getData();
             for (RoleVo role:roleVoList){
                 //角色必须是ROLE_开头，可以在数据库中设置
@@ -59,7 +60,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 grantedAuthorities.add(grantedAuthority);
                 //获取权限
                 Result<List<MenuVo>> perResult  = permissionService.getRolePermission(role.getId());
-                if (perResult.getCode() != 100){
+                if (perResult.getCode() != StatusCode.SUCCESS_CODE){
                     List<MenuVo> permissionList = perResult.getData();
                     for (MenuVo menu:permissionList
                             ) {

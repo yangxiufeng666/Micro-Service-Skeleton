@@ -3,7 +3,6 @@ package com.microservice.skeleton.common.vo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,11 +14,10 @@ import java.util.Map;
  * Time: 11:04
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Result<T> implements Serializable {
+public class Result<T> {
 
     private static final String CODE = "code";
     private static final String MSG = "msg";
-    private static final long serialVersionUID = 2633283546876721434L;
 
     private Integer code=200;
     private String msg="操作成功";

@@ -50,8 +50,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().fullyAuthenticated()
                 .antMatchers("/oauth/token").permitAll()
                 .and()
-                .logout().permitAll()
-                .and()
                 .csrf().disable();
     }
 
