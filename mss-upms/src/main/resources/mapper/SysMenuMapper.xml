@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.microservice.skeleton.upms.mapper.RcMenuMapper">
-  <resultMap id="BaseResultMap" type="com.microservice.skeleton.upms.entity.RcMenu">
+<mapper namespace="com.microservice.skeleton.upms.mapper.SysMenuMapper">
+  <resultMap id="BaseResultMap" type="com.microservice.skeleton.upms.entity.SysMenu">
     <!--
       WARNING - @mbg.generated
     -->

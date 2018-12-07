@@ -1,7 +1,7 @@
 package com.microservice.skeleton.upms.controller;
 
 import com.microservice.skeleton.common.vo.Result;
-import com.microservice.skeleton.upms.entity.RcUser;
+import com.microservice.skeleton.upms.entity.SysUser;
 import com.microservice.skeleton.upms.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +24,7 @@ public class UserController {
 
     @GetMapping("findByUsername/{username}")
     public Result findByUsername(@PathVariable("username") String username){
-        RcUser user = userService.findByUsername(username);
+        SysUser user = userService.findByUsername(username);
         if (user == null){
             return Result.failure(100,"用户不存在");
         }

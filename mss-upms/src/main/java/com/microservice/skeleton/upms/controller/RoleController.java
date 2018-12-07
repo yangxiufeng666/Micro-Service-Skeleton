@@ -1,7 +1,7 @@
 package com.microservice.skeleton.upms.controller;
 
 import com.microservice.skeleton.common.vo.Result;
-import com.microservice.skeleton.upms.entity.RcRole;
+import com.microservice.skeleton.upms.entity.SysRole;
 import com.microservice.skeleton.upms.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +25,7 @@ public class RoleController {
     private RoleService roleService;
     @GetMapping("getRoleByUserId/{userId}")
     public Result getRoleByUserId(@PathVariable("userId") Integer userId){
-        List<RcRole> roleList = roleService.getRoleByUserId(userId);
+        List<SysRole> roleList = roleService.getRoleByUserId(userId);
         return Result.ok().setData(roleList);
     }
 

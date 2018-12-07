@@ -1,6 +1,6 @@
 package com.microservice.skeleton.upms;
 
-import com.microservice.skeleton.upms.entity.RcUser;
+import com.microservice.skeleton.upms.entity.SysUser;
 import com.microservice.skeleton.upms.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,7 +26,7 @@ public class GeneratorTests {
 
     @Test
     public void contextLoads() {
-        RcUser user = userService.findByUsername("admin");
+        SysUser user = userService.findByUsername("admin");
         System.out.println(user);
     }
     @Test

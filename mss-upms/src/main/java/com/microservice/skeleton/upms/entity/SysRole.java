@@ -3,8 +3,8 @@ package com.microservice.skeleton.upms.entity;
 import java.util.Date;
 import javax.persistence.*;
 
-@Table(name = "rc_role")
-public class RcRole {
+@Table(name = "sys_role")
+public class SysRole {
     @Id
     @GeneratedValue(generator = "JDBC")
     private Integer id;

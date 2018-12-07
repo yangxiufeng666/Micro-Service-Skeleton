@@ -1,7 +1,7 @@
 package com.microservice.skeleton.upms.controller;
 
 import com.microservice.skeleton.common.vo.Result;
-import com.microservice.skeleton.upms.entity.RcMenu;
+import com.microservice.skeleton.upms.entity.SysMenu;
 import com.microservice.skeleton.upms.service.PermissionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class PermissionController {
     private PermissionService permissionService;
     @GetMapping("getRolePermission/{roleId}")
     public Result getRolePermission(@PathVariable("roleId") Integer roleId){
-        List<RcMenu> menuList = permissionService.getPermissionsByRoleId(roleId);
+        List<SysMenu> menuList = permissionService.getPermissionsByRoleId(roleId);
         return Result.ok().setData(menuList);
     }
 

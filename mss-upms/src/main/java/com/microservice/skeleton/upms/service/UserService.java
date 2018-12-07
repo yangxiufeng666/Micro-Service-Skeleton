@@ -1,6 +1,6 @@
 package com.microservice.skeleton.upms.service;
 
-import com.microservice.skeleton.upms.entity.RcUser;
+import com.microservice.skeleton.upms.entity.SysUser;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,5 +10,5 @@ import com.microservice.skeleton.upms.entity.RcUser;
  * Time: 9:48
  */
 public interface UserService {
-    RcUser findByUsername(String username);
+    SysUser findByUsername(String username);
 }

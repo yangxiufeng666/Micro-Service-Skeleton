@@ -1,6 +1,6 @@
 package com.microservice.skeleton.upms.service;
 
-import com.microservice.skeleton.upms.entity.RcMenu;
+import com.microservice.skeleton.upms.entity.SysMenu;
 
 import java.util.List;
 
@@ -12,5 +12,5 @@ import java.util.List;
  * Time: 10:12
  */
 public interface PermissionService {
-    List<RcMenu> getPermissionsByRoleId(Integer roleId);
+    List<SysMenu> getPermissionsByRoleId(Integer roleId);
 }

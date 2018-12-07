@@ -44,8 +44,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Autowired
     private RedisConnectionFactory redisConnectionFactory;
-    @Autowired
-    RedisTemplate redisTemplate;
 
     @Bean
     RedisTokenStore redisTokenStore(){

@@ -3,8 +3,8 @@ package com.microservice.skeleton.upms.entity;
 import java.util.Date;
 import javax.persistence.*;
 
-@Table(name = "rc_menu")
-public class RcMenu {
+@Table(name = "sys_menu")
+public class SysMenu {
     @Id
     @GeneratedValue(generator = "JDBC")
     private String id;
