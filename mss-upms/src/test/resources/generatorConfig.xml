@@ -47,13 +47,13 @@
         <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
         <javaClientGenerator targetPackage="com.microservice.skeleton.upms.mapper" targetProject="src/main/java"
                              type="XMLMAPPER"/>
-        <table tableName="sys_user">
-            <generatedKey column="id" sqlStatement="JDBC"/>
-        </table>
-        <table tableName="sys_role"
-            >
-            <generatedKey column="id" sqlStatement="JDBC"/>
-        </table>
+        <!--<table tableName="sys_user">-->
+            <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--</table>-->
+        <!--<table tableName="sys_role"-->
+            <!--&gt;-->
+            <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--</table>-->
         <table tableName="sys_menu">
             <generatedKey column="id" sqlStatement="JDBC"/>
         </table>

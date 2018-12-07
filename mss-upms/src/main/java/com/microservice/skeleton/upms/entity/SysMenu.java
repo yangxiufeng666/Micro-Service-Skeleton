@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class SysMenu {
     @Id
     @GeneratedValue(generator = "JDBC")
-    private String id;
+    private Integer id;
 
     /**
      * 菜单编码
@@ -65,14 +65,14 @@ public class SysMenu {
     /**
      * @return id
      */
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @param id
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

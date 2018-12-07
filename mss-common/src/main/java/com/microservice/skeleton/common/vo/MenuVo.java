@@ -15,7 +15,7 @@ import java.util.Date;
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class MenuVo {
-    private String id;
+    private Integer id;
     private String code;
     private String pCode;
     private String pId;
