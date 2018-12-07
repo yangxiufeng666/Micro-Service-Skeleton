@@ -21,7 +21,7 @@ zuul:
       path: /uaa/**
       strip-prefix: true
       sensitiveHeaders:
-      serviceId: auth2.0-center
+      serviceId: authcenter
 security:
   oauth2:
     resource:
