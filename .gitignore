@@ -57,3 +57,5 @@ nbdist/
 /mss-modules/mvnw
 /mss-modules/mss-upms/mvnw.cmd
 /mss-modules/mss-upms/mvnw
+/mss-common/.mvn
+/mss-upms/.mvn
