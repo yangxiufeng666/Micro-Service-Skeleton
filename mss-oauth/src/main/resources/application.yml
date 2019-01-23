@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: authCenter
+    name: uaa
   jpa:
     show-sql: true
   datasource:
