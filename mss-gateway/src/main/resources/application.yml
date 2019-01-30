@@ -16,12 +16,9 @@ zuul:
   host:
     connect-timeout-millis: 10000
     socket-timeout-millis: 60000
-#  routes:
-#    uaa:
-#      path: /uaa/**
-#      strip-prefix: true
-#      sensitiveHeaders:
-#      serviceId: authcenter
+  routes:
+    uaa:
+      sensitiveHeaders:
 security:
   oauth2:
     resource:
