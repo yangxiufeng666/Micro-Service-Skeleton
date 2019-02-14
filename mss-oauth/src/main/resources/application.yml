@@ -1,9 +1,6 @@
 server:
   port: 9060
-
 spring:
-  application:
-    name: uaa
   jpa:
     show-sql: true
   datasource:
@@ -16,17 +13,11 @@ spring:
     host: 127.0.0.1
     port: 6379
     password: 123456
-eureka:
-  instance:
-    prefer-ip-address: true
-    instance-id: ${spring.cloud.client.ip-address}:${server.port}
-    ##续约更新时间间隔设置5秒，m默认30s
-    lease-renewal-interval-in-seconds: 5
-    ##续约到期时间10秒，默认是90秒
-    lease-expiration-duration-in-seconds: 10
-  client:
-      service-url:
-        defaultZone: http://mss-eureka1:9010/eureka/
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
 logging:
   config: classpath:logback.xml
   level:

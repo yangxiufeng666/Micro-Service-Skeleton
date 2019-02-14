@@ -1,17 +1,11 @@
 spring:
-  application:
-    name: mss-gateway
-server:
-  port: 9030
-eureka:
-  instance:
-    prefer-ip-address: true
-    instance-id: ${spring.cloud.client.ip-address}:${server.port}
-    lease-renewal-interval-in-seconds: 5
-    lease-expiration-duration-in-seconds: 10
-  client:
-      service-url:
-        defaultZone: http://mss-eureka1:9010/eureka/,http://mss-eureka2:9011/eureka/
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    loadbalancer:
+      retry:
+        enabled: true
 zuul:
   host:
     connect-timeout-millis: 10000

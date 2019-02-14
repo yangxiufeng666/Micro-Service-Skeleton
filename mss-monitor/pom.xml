@@ -17,14 +17,13 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-		</dependency>
-
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -36,25 +35,12 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+			<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-turbine</artifactId>
+			<artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
 		</dependency>
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.cloud</groupId>-->
-			<!--<artifactId>spring-cloud-sleuth-zipkin-stream</artifactId>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-			<!--<groupId>io.zipkin.java</groupId>-->
-			<!--<artifactId>zipkin-server</artifactId>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-			<!--<groupId>io.zipkin.java</groupId>-->
-			<!--<artifactId>zipkin-autoconfigure-ui</artifactId>-->
-			<!--<scope>runtime</scope>-->
-		<!--</dependency>-->
 	</dependencies>
 	<build>
 		<plugins>
