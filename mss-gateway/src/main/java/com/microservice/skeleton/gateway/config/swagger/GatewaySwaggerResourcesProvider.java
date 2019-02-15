@@ -30,9 +30,7 @@ public class GatewaySwaggerResourcesProvider implements SwaggerResourcesProvider
     public List<SwaggerResource> get() {
         List<SwaggerResource> resources = new ArrayList<>();
         List<Route> routes = routeLocator.getRoutes();
-        for (Route route:routes) {
-            resources.add(swaggerResource(route.getId(), route.getFullPath().replace("**", "v2/api-docs")));
-        }
+        routes.forEach(route -> resources.add(swaggerResource(route.getId(), route.getFullPath().replace("**", "v2/api-docs"))));
         return resources;
     }
     private SwaggerResource swaggerResource(String name, String location) {
