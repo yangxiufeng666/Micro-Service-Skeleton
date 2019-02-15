@@ -16,6 +16,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Finchley.SR2</spring-cloud.version>
+		<spring-cloud-alibaba.version>0.2.1.RELEASE</spring-cloud-alibaba.version>
 		<druid-starter.version>1.1.10</druid-starter.version>
 		<swagger2.version>2.9.2</swagger2.version>
 		<lombok.version>1.16.20</lombok.version>
@@ -64,7 +65,7 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-alibaba-dependencies</artifactId>
-				<version>0.2.1.RELEASE</version>
+				<version>${spring-cloud-alibaba.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
