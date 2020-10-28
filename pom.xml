@@ -15,11 +15,10 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<spring-cloud.version>Finchley.SR2</spring-cloud.version>
-		<spring-cloud-alibaba.version>0.2.1.RELEASE</spring-cloud-alibaba.version>
-		<druid-starter.version>1.1.10</druid-starter.version>
+		<spring-cloud.version>Hoxton.SR8</spring-cloud.version>
+		<spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>
+		<druid-starter.version>1.1.16</druid-starter.version>
 		<swagger2.version>2.9.2</swagger2.version>
-		<lombok.version>1.16.20</lombok.version>
 		<mybatis-plus.version>2.2.0</mybatis-plus.version>
 		<tk.mybatis.starter.version>2.0.4</tk.mybatis.starter.version>
 		<!--升级SpringBoot2.0.x后出现Which fixed NoSuchMethodError.RedisConnection.set([B[B)V issue
@@ -31,7 +30,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.8.RELEASE</version>
+		<version>2.2.10.RELEASE</version>
 	</parent>
 	<modules>
 		<module>mss-common</module>
@@ -63,16 +62,11 @@
 				<scope>import</scope>
 			</dependency>
 			<dependency>
-				<groupId>org.springframework.cloud</groupId>
+				<groupId>com.alibaba.cloud</groupId>
 				<artifactId>spring-cloud-alibaba-dependencies</artifactId>
 				<version>${spring-cloud-alibaba.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-jdbc</artifactId>
-				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.alibaba</groupId>

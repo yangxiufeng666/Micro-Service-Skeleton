@@ -6,13 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * Description:
- * User: Mr.Yangxiufeng
- * Date: 2018-05-16
- * Time: 11:04
- */
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Result<T> {
 
@@ -24,7 +18,6 @@ public class Result<T> {
     private String description;
     private T data;
 
-    private HashMap<String,Object> exend;
 
     public Integer getCode() {
         return code;
@@ -59,17 +52,9 @@ public class Result<T> {
         this.description = description;
     }
 
-    @JsonIgnore
-    public HashMap<String, Object> getExend() {
-        return exend;
-    }
 
-    public void setExend(HashMap<String, Object> exend) {
-        this.exend = exend;
-    }
 
     public Result() {
-        exend = new HashMap<>();
     }
 
     public static Result failure(int code, String msg) {
@@ -81,13 +66,11 @@ public class Result<T> {
 
     public static Result ok(String msg) {
         Result result = new Result();
-        result.put("msg", msg);
         return result;
     }
 
     public static Result ok(Map<String, Object> map) {
         Result result = new Result();
-        result.exend.putAll(map);
         return result;
     }
 
@@ -95,8 +78,5 @@ public class Result<T> {
         return new Result();
     }
 
-    public Result put(String key, Object value) {
-        exend.put(key, value);
-        return this;
-    }
+
 }

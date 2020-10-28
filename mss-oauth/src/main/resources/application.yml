@@ -1,14 +1,6 @@
 server:
   port: 9060
 spring:
-  jpa:
-    show-sql: true
-  datasource:
-    url: jdbc:mysql://localhost:3306/zuul-auth?useUnicode=true&characterEncoding=utf-8
-    username: root
-    password: 123456
-    druid:
-      driver-class-name: com.mysql.jdbc.Driver
   redis:
     host: 127.0.0.1
     port: 6379
@@ -17,13 +9,10 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
-
 logging:
-  config: classpath:logback.xml
   level:
-    org:
-      springframework:
-        web: info
+    root: INFO
+    org.springframework.web: INFO
 ###feign 默认关闭熔断，请看HystrixFeignConfiguration
 feign:
   hystrix:
