@@ -37,5 +37,6 @@ hystrix:
             timeoutInMilliseconds: 600000
 exclusion:
   url:
-    - /goods/list
-    - /goods/detail
+    - /goods-center/goods/list
+    - /goods-center/goods/detail
+    - /uaa/login

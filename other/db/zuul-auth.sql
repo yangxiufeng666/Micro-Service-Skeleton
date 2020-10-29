@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50628
 File Encoding         : 65001
 
-Date: 2018-12-07 17:26:38
+Date: 2020-10-29 16:47:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -164,11 +164,14 @@ CREATE TABLE `sys_menu` (
   `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `FK_CODE` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
+INSERT INTO `sys_menu` VALUES ('1', 'order', null, null, '订单管理', null, '1', null, null, null, null, null, null);
+INSERT INTO `sys_menu` VALUES ('2', 'order_list', 'order', '1', '订单列表查询', '/order/list', '2', null, null, null, null, null, null);
+INSERT INTO `sys_menu` VALUES ('3', 'order_detail', 'order', '1', '订单详情', '/order/detail', '2', null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_privilege
@@ -184,6 +187,9 @@ CREATE TABLE `sys_privilege` (
 -- ----------------------------
 -- Records of sys_privilege
 -- ----------------------------
+INSERT INTO `sys_privilege` VALUES ('6', '1', null);
+INSERT INTO `sys_privilege` VALUES ('6', '2', null);
+INSERT INTO `sys_privilege` VALUES ('6', '3', null);
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -205,9 +211,7 @@ CREATE TABLE `sys_role` (
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
-INSERT INTO `sys_role` VALUES ('6', '管理员', 'admin', null, '2017-06-20 15:07:13', '2017-06-26 12:46:09', '1');
-INSERT INTO `sys_role` VALUES ('8', '超级管理员', 'super', null, '2017-06-20 15:08:45', null, '1');
-INSERT INTO `sys_role` VALUES ('17', '用户', 'user', null, '2017-06-28 18:50:39', '2017-07-21 09:41:28', '1');
+INSERT INTO `sys_role` VALUES ('6', '管理员', 'admin', null, '2020-10-28 15:07:13', null, '1');
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -234,10 +238,9 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('46', null, 'super', '$2a$10$cKRbR9IJktfmKmf/wShyo.5.J8IxO/7YVn8twuWFtvPgruAF8gtKq', null, '超级管理员', '2017-06-22 14:26:09', '1', null, null, '1', '2017-06-20 15:12:16', '2017-09-12 14:39:48');
-INSERT INTO `sys_user` VALUES ('48', null, 'admin', '$2a$10$cKRbR9IJktfmKmf/wShyo.5.J8IxO/7YVn8twuWFtvPgruAF8gtKq', null, '管理员', null, '1', null, null, '1', '2017-06-26 17:31:41', null);
-INSERT INTO `sys_user` VALUES ('50', null, 'test1', '$2a$10$cKRbR9IJktfmKmf/wShyo.5.J8IxO/7YVn8twuWFtvPgruAF8gtKq', null, 'test1', null, '1', null, null, '1', '2017-09-18 16:11:15', null);
-INSERT INTO `sys_user` VALUES ('51', null, 'test2', '$2a$10$cKRbR9IJktfmKmf/wShyo.5.J8IxO/7YVn8twuWFtvPgruAF8gtKq', null, 'test2', null, '1', null, null, '1', '2017-09-21 17:09:51', null);
+INSERT INTO `sys_user` VALUES ('48', null, 'admin', '$2a$10$vmp.zWWnX3LFxSs6I00i0eurlHR7ymcfUQ5HtXw71w9QJ.2JUf8Ua', null, '管理员', null, '1', null, null, '1', '2020-10-27 17:31:41', null);
+INSERT INTO `sys_user` VALUES ('50', null, 'test1', '$2a$10$vmp.zWWnX3LFxSs6I00i0eurlHR7ymcfUQ5HtXw71w9QJ.2JUf8Ua', null, 'test1', null, '1', null, null, '1', '2020-10-27 16:11:15', null);
+INSERT INTO `sys_user` VALUES ('51', null, 'test2', '$2a$10$vmp.zWWnX3LFxSs6I00i0eurlHR7ymcfUQ5HtXw71w9QJ.2JUf8Ua', null, 'test2', null, '1', null, null, '1', '2020-10-27 17:09:51', null);
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -250,8 +253,9 @@ CREATE TABLE `sys_user_role` (
   `create_time` datetime DEFAULT NULL,
   `create_by` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_user_role
 -- ----------------------------
+INSERT INTO `sys_user_role` VALUES ('1', '48', '6', null, null);

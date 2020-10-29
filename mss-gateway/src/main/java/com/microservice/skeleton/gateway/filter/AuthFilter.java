@@ -89,12 +89,11 @@ public class AuthFilter implements GlobalFilter , Ordered {
     }
 
     private boolean isExclusionUrl(String path){
-        final String url = getRealUrl(path);
         List<String> exclusions = exclusionUrl.getUrl();
         if (exclusions.size() == 0){
             return false;
         }
-        return exclusions.stream().anyMatch( action -> antPathMatcher.match(action , url));
+        return exclusions.stream().anyMatch( action -> antPathMatcher.match(action , path));
 
     }
 
@@ -123,6 +122,9 @@ public class AuthFilter implements GlobalFilter , Ordered {
     private boolean hasPermission(String headerToken, String path){
         String url = getRealUrl(path);
         try {
+            if (StringUtils.isEmpty(headerToken)){
+                return false;
+            }
             SignedJWT jwt = getSignedJWT(headerToken);
             Object payload = jwt.getJWTClaimsSet().getClaim("payload");
             UserVo user = JSON.parseObject(payload.toString(), UserVo.class);

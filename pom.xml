@@ -21,10 +21,6 @@
 		<swagger2.version>2.9.2</swagger2.version>
 		<mybatis-plus.version>2.2.0</mybatis-plus.version>
 		<tk.mybatis.starter.version>2.0.4</tk.mybatis.starter.version>
-		<!--升级SpringBoot2.0.x后出现Which fixed NoSuchMethodError.RedisConnection.set([B[B)V issue
-		，需要解决https://github.com/spring-projects/spring-security-oauth2-boot/issues/27，
-		SpringBoot2.1.X已经解决，真是坑啊，所以说不要盲目的升级！！！-->
-        <spring-security-oauth.version>2.3.3.RELEASE</spring-security-oauth.version>
 		<com.spotify-version>0.4.13</com.spotify-version>
 	</properties>
 	<parent>
