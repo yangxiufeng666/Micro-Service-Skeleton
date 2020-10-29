@@ -6,19 +6,19 @@ spring:
     loadbalancer:
       retry:
         enabled: true
-zuul:
-  host:
-    connect-timeout-millis: 10000
-    socket-timeout-millis: 60000
-  routes:
-    uaa:
-      sensitiveHeaders:
-security:
-  oauth2:
-    resource:
-      user-info-uri:  http://uaa/user
-      prefer-token-info: false
-      loadBalanced: true
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    locale: zh_CN
+    time-zone: GMT+8
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
 ##############end#####################
 ####超时配置####
 ribbon:
@@ -26,8 +26,6 @@ ribbon:
   ConnectTimeout: 10000
   MaxAutoRetries: 1
   MaxAutoRetriesNextServer: 2
-  eureka:
-    enabled: true
 hystrix:
   command:
     default:
@@ -37,4 +35,7 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 600000
-###超时配置###
+exclusion:
+  url:
+    - /goods/list
+    - /goods/detail

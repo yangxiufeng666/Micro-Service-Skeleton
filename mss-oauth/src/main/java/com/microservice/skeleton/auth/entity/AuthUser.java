@@ -14,7 +14,7 @@ import java.util.Set;
  */
 public class AuthUser implements UserDetails {
 
-    private Integer userId;
+    private Integer id;
     private String password;
     private final String username;
     private Set<SimpleGrantedAuthority> authorities;
@@ -72,11 +72,11 @@ public class AuthUser implements UserDetails {
         return enabled;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

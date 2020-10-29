@@ -7,7 +7,7 @@ import java.security.Principal;
 
 @RestController
 public class UserController {
-    @RequestMapping("/user")
+    @RequestMapping("/checkUser")
     public Principal user(Principal user) {
         return user;
     }

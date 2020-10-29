@@ -1,8 +1,8 @@
 package com.microservice.skeleton.auth.jwt;
 
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.nacos.common.utils.Md5Utils;
 import com.microservice.skeleton.auth.entity.AuthUser;
+import com.microservice.skeleton.common.jwt.JWTConstants;
 import com.microservice.skeleton.common.vo.Result;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.JWSVerifier;
@@ -16,8 +16,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.util.StringUtils;
 
@@ -28,7 +26,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 /**<p>授权</p>
  * @author Mr.Yangxiufeng
@@ -38,20 +35,14 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
-    private static final byte[] SECRET = "6MNSobBRCHGIO0fS6MNSobBRCHGIO0fS".getBytes();
-
-    public static final String TOKEN_HEADER = "Authorization";
-    public static final String TOKEN_PREFIX = "Bearer ";
-
     public JWTAuthorizationFilter(AuthenticationManager authenticationManager) {
         super(authenticationManager);
     }
 
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        String token = request.getHeader(TOKEN_HEADER);
-        if (StringUtils.isEmpty(token) || !token.startsWith(TOKEN_PREFIX)){
+        String token = request.getHeader(JWTConstants.TOKEN_HEADER);
+        if (StringUtils.isEmpty(token) || !token.startsWith(JWTConstants.TOKEN_PREFIX)){
             chain.doFilter(request,response);
             return;
         }
@@ -83,9 +74,9 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
     // 这里从token中获取用户信息并新建一个token
     private UsernamePasswordAuthenticationToken getAuthentication(String tokenHeader) throws ParseException, JOSEException {
-        String token = tokenHeader.replace(TOKEN_PREFIX, "");
+        String token = tokenHeader.replace(JWTConstants.TOKEN_PREFIX, "");
         SignedJWT jwt = SignedJWT.parse(token);
-        JWSVerifier verifier = new MACVerifier(SECRET);
+        JWSVerifier verifier = new MACVerifier(JWTConstants.SECRET);
          //校验是否有效
         if (!jwt.verify(verifier)) {
             throw new AccountExpiredException("Token 无效");

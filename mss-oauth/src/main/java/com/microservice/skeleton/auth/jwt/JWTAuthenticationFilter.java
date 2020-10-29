@@ -1,19 +1,17 @@
 package com.microservice.skeleton.auth.jwt;
 
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.TypeReference;
-import com.alibaba.nacos.common.utils.Md5Utils;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microservice.skeleton.auth.entity.AuthUser;
+import com.microservice.skeleton.common.jwt.JWTConstants;
+import com.microservice.skeleton.common.util.Md5Utils;
 import com.microservice.skeleton.common.vo.Result;
+import com.microservice.skeleton.common.vo.UserVo;
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.codec.digest.Md5Crypt;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,10 +20,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import sun.security.provider.MD5;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -44,8 +40,6 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
-
-    private static final byte[] SECRET = "6MNSobBRCHGIO0fS6MNSobBRCHGIO0fS".getBytes();
 
     /**
      * 过期时间2小时
@@ -72,15 +66,13 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         AuthUser user = (AuthUser) authResult.getPrincipal();
-        Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
         /**
          * 1、创建密钥
          */
-        MACSigner macSigner = new MACSigner(SECRET);
+        MACSigner macSigner = new MACSigner(JWTConstants.SECRET);
         /**
          * 2、payload
          */
-
         String payload = JSONObject.toJSONString(user);
         JWTClaimsSet claimsSet = new JWTClaimsSet.Builder()
                 .subject("subject")
@@ -100,12 +92,16 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setCharacterEncoding("UTF-8");
         Result result = Result.ok().setData(jwtToken);
-        //
-        String keyPrefix = "JWT" + user.getUserId() + ":";
+        //生成Key， 把权限放入到redis中
+        String keyPrefix = "JWT" + user.getId() + ":";
         String keySuffix = Md5Utils.getMD5(jwtToken.getBytes());
         String key = keyPrefix + keySuffix;
 
-        redisTemplate.opsForValue().set(key , jwtToken , EXPIRE_TIME , TimeUnit.SECONDS);
+        String authKey = key + ":Authorities";
+
+        redisTemplate.opsForValue().set(key , jwtToken , EXPIRE_TIME , TimeUnit.MILLISECONDS);
+
+        redisTemplate.opsForValue().set(authKey, JSONObject.toJSONString(user.getAuthorities()), EXPIRE_TIME , TimeUnit.SECONDS);
 
         response.getWriter().write(JSONObject.toJSONString(result));
     }

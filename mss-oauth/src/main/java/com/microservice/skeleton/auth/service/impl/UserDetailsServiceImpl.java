@@ -1,4 +1,5 @@
 package com.microservice.skeleton.auth.service.impl;
+
 import com.microservice.skeleton.auth.entity.AuthUser;
 import com.microservice.skeleton.auth.service.UpmsService;
 import com.microservice.skeleton.common.util.StatusCode;
@@ -8,9 +9,7 @@ import com.microservice.skeleton.common.vo.RoleVo;
 import com.microservice.skeleton.common.vo.UserVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -58,7 +57,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             }
         }
         AuthUser user = new AuthUser(userVo.getUsername(), userVo.getPassword(), grantedAuthorities);
-        user.setUserId(userVo.getId());
+        user.setId(userVo.getId());
         return user;
     }
 }

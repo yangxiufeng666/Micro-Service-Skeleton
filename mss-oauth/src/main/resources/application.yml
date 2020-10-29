@@ -9,6 +9,10 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    locale: zh_CN
+    time-zone: GMT+8
 logging:
   level:
     root: INFO
