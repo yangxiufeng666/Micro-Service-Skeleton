@@ -120,7 +120,6 @@ public class AuthFilter implements GlobalFilter , Ordered {
         return false;
     }
     private boolean hasPermission(String headerToken, String path){
-        String url = getRealUrl(path);
         try {
             if (StringUtils.isEmpty(headerToken)){
                 return false;
@@ -140,15 +139,11 @@ public class AuthFilter implements GlobalFilter , Ordered {
                 return false;
             }
             List<Authority> authorities = JSON.parseArray(authStr , Authority.class);
-            return authorities.stream().anyMatch(authority -> antPathMatcher.match(authority.getAuthority(), url));
+            return authorities.stream().anyMatch(authority -> antPathMatcher.match(authority.getAuthority(), path));
         } catch (ParseException e) {
             e.printStackTrace();
         }
         return false;
-    }
-    private String getRealUrl(String path){
-        String[] splitUrl = path.split("/");
-        return path.replace("/"+splitUrl[1] , "");
     }
     private SignedJWT getSignedJWT(String headerToken) throws ParseException {
         String token = headerToken.replace(JWTConstants.TOKEN_PREFIX, "");

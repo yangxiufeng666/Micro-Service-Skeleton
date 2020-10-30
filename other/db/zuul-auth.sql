@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50628
 File Encoding         : 65001
 
-Date: 2020-10-29 16:47:06
+Date: 2020-10-30 09:12:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -170,8 +170,8 @@ CREATE TABLE `sys_menu` (
 -- Records of sys_menu
 -- ----------------------------
 INSERT INTO `sys_menu` VALUES ('1', 'order', null, null, '订单管理', null, '1', null, null, null, null, null, null);
-INSERT INTO `sys_menu` VALUES ('2', 'order_list', 'order', '1', '订单列表查询', '/order/list', '2', null, null, null, null, null, null);
-INSERT INTO `sys_menu` VALUES ('3', 'order_detail', 'order', '1', '订单详情', '/order/detail', '2', null, null, null, null, null, null);
+INSERT INTO `sys_menu` VALUES ('2', 'order_list', 'order', '1', '订单列表查询', '/mss-upms/order/list', '2', null, null, null, null, null, null);
+INSERT INTO `sys_menu` VALUES ('3', 'order_detail', 'order', '1', '订单详情', '/mss-upms/order/detail', '2', null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for sys_privilege
