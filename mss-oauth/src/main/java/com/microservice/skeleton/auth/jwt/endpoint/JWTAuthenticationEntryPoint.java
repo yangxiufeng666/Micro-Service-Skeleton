@@ -1,4 +1,4 @@
-package com.microservice.skeleton.auth.jwt;
+package com.microservice.skeleton.auth.jwt.endpoint;
 
 import com.alibaba.fastjson.JSONObject;
 import com.microservice.skeleton.common.vo.Result;

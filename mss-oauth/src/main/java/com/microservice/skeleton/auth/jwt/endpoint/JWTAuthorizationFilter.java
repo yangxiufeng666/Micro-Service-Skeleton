@@ -1,7 +1,8 @@
-package com.microservice.skeleton.auth.jwt;
+package com.microservice.skeleton.auth.jwt.endpoint;
 
 import com.alibaba.fastjson.JSONObject;
 import com.microservice.skeleton.auth.entity.AuthUser;
+import com.microservice.skeleton.auth.jwt.token.JwtAuthenticationToken;
 import com.microservice.skeleton.common.jwt.JWTConstants;
 import com.microservice.skeleton.common.vo.Result;
 import com.nimbusds.jose.JOSEException;
@@ -10,6 +11,7 @@ import com.nimbusds.jose.crypto.MACVerifier;
 import com.nimbusds.jwt.SignedJWT;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
+import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.AccountExpiredException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -73,7 +75,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     }
 
     // 这里从token中获取用户信息并新建一个token
-    private UsernamePasswordAuthenticationToken getAuthentication(String tokenHeader) throws ParseException, JOSEException {
+    private AbstractAuthenticationToken getAuthentication(String tokenHeader) throws ParseException, JOSEException {
         String token = tokenHeader.replace(JWTConstants.TOKEN_PREFIX, "");
         SignedJWT jwt = SignedJWT.parse(token);
         JWSVerifier verifier = new MACVerifier(JWTConstants.SECRET);
@@ -90,7 +92,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
         Object account = jwt.getJWTClaimsSet().getClaim("payload");
         if (account != null){
             AuthUser user = JSONObject.parseObject(account.toString(), AuthUser.class);
-            return new UsernamePasswordAuthenticationToken(user.getUsername(), null, user.getAuthorities());
+            return new JwtAuthenticationToken(user.getUsername(), user.getPassword(), user.getAuthorities());
         }
         return null;
     }

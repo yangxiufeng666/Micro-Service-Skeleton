@@ -23,11 +23,11 @@ public class AuthUser implements UserDetails {
     private final boolean credentialsNonExpired;
     private final boolean enabled;
 
-    public AuthUser(String password, String username, Set<SimpleGrantedAuthority> authorities) {
+    public AuthUser(String username, String password, Set<SimpleGrantedAuthority> authorities) {
         this(username, password, authorities, true, true, true, true);
     }
 
-    public AuthUser(String password, String username, Set<SimpleGrantedAuthority> authorities, boolean accountNonExpired, boolean accountNonLocked, boolean credentialsNonExpired, boolean enabled) {
+    public AuthUser(String username, String password, Set<SimpleGrantedAuthority> authorities, boolean accountNonExpired, boolean accountNonLocked, boolean credentialsNonExpired, boolean enabled) {
         this.password = password;
         this.username = username;
         this.authorities = authorities;
