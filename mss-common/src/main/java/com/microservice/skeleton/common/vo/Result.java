@@ -61,11 +61,13 @@ public class Result<T> {
 
     public static Result ok(String msg) {
         Result result = new Result();
+        result.setMsg(msg);
         return result;
     }
 
     public static Result ok(Map<String, Object> map) {
         Result result = new Result();
+        result.setData(map);
         return result;
     }
 
